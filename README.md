@@ -7,7 +7,21 @@ managment pipeline.
 
 ## Need
 
+There are several reasons for needing to self manage the underlying vpc structure in a kops managed kubernetes cluster,
+such as routing tables for vpn or direct connections. This module manages a single or multi-az structure designed to support
+kops managed clusters with a likely default configuration and easy customization.
+
 ## Recommendation(s)
+
+Default vpc structure
+
+vpc                              | us-east-1b   | us-east-1c   | us-east-1d   | us-east-1e   | mask          | addr
+---------------------------------|--------------|--------------|--------------|--------------|---------------|----------
+vpc-example                      |              |              |              |              | /19           | 8190
+subnet-vpc-example-public-(az)   | 10.x.0.0/22  | 10.x.4.0/22  | 10.x.8.0/22  | 10.x.12.0/22 | 255.255.252.0 | 1022
+subnet-vpc-example-nat-(az)      | 10.x.16.0/23 | 10.x.18.0/23 | 10.x.20.0/23 | 10.x.22.0/23 | 255.255.254.0 | 510
+subnet-vpc-example-internal-(az) | 10.x.24.0/22 | 10.x.26.0/22 | 10.x.28.0/22 | 10.x.30.0/22 | 255.255.252.0 | 1022
+
 
 ### usage
 

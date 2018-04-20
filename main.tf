@@ -20,7 +20,7 @@ resource "aws_nat_gateway" "natgw" {
   count         = "${length(var.azs) * lookup(map(var.enable_nat_gateway, 1), "true", 0)}"
   tags          = "${merge(var.tags,map(format("kubernetes.io/cluster/%s",var.k8_cluster_name),"shared"))}"
 
-  #depends_on = ["aws_internet_gateway.mod"]
+  depends_on = ["aws_internet_gateway.mod"]
 }
 
 resource "aws_eip" "nateip" {
